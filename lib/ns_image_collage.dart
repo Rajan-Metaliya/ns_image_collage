@@ -18,12 +18,18 @@ class NSImageCollage extends StatelessWidget {
       return const SizedBox.shrink();
     }
     if (images.length == 1) {
-      return NSImageWidget(
-        image: images.first,
+      return Stack(
+        fit: StackFit.expand,
+        children: [
+          NSImageWidget(
+            image: images.first,
+          ),
+        ],
       );
     }
     if (images.length == 2) {
       return Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: images.map((image) {
           return Expanded(
             child: NSImageWidget(
