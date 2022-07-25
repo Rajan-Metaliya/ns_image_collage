@@ -14,6 +14,18 @@ class NSImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final placeholder = Center(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Shimmer.fromColors(
+          baseColor: Colors.grey.withOpacity(0.5),
+          highlightColor: Colors.white.withOpacity(0.1),
+          child: Container(
+            color: Colors.red,
+          ),
+        ),
+      ),
+    );
     return CachedNetworkImage(
       imageUrl: image.url,
       fit: BoxFit.cover,
@@ -23,24 +35,11 @@ class NSImageWidget extends StatelessWidget {
             imageUrl: image.thumbnailUrl!,
             fit: BoxFit.cover,
             progressIndicatorBuilder: (context, url, downloadProgress) =>
-                const Center(child: CircularProgressIndicator()),
+                placeholder,
           );
-
           return imageWidget;
         }
-
-        return Center(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Shimmer.fromColors(
-              baseColor: Colors.grey.withOpacity(0.5),
-              highlightColor: Colors.white.withOpacity(0.1),
-              child: Container(
-                color: Colors.red,
-              ),
-            ),
-          ),
-        );
+        return placeholder;
       },
     );
   }

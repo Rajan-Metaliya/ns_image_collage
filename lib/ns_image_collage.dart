@@ -12,6 +12,10 @@ class NSImageCollage extends StatelessWidget {
 
   final List<NSImage> images;
 
+  bool get moreImages => (images.length - 6) > 0;
+
+  int get noOfMoreImages => images.length - 6;
+
   @override
   Widget build(BuildContext context) {
     if (images.isEmpty) {
@@ -189,17 +193,20 @@ class NSImageCollage extends StatelessWidget {
                     NSImageWidget(
                       image: images.last,
                     ),
-                    Container(
-                      color: Colors.black.withOpacity(0.5),
-                    ),
-                    Center(
-                      child: Text(
-                        '${images.length - 6} +',
-                        style: Theme.of(context).textTheme.headline5!.copyWith(
-                              color: Colors.white,
-                            ),
+                    if (moreImages) ...[
+                      Container(
+                        color: Colors.black.withOpacity(0.5),
                       ),
-                    ),
+                      Center(
+                        child: Text(
+                          '$noOfMoreImages +',
+                          style:
+                              Theme.of(context).textTheme.headline5!.copyWith(
+                                    color: Colors.white,
+                                  ),
+                        ),
+                      ),
+                    ],
                   ],
                 ),
               ),

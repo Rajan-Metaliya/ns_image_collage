@@ -5,7 +5,7 @@ class NSImage {
   String? thumbnailUrl;
   String? localPath;
 
-  bool get hasThumbnail => thumbnailUrl != null;
+  bool get hasThumbnail => thumbnailUrl != null && thumbnailUrl!.isNotEmpty;
 
   bool get hasLocalPath => thumbnailUrl != null;
 
